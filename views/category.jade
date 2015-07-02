@@ -1,0 +1,34 @@
+extends layout
+
+block content
+	.col-md-9.col-md-push-0
+		script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+		script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js')
+		script(src='http://inblr-uppalasr:3000/javascripts/select.js')
+		form(name='categoryForm' novalidate)
+			div(class='container' ng-controller='categoryCtrl')
+				
+				div(class='row')
+					div(class='col-md-6 col-md-push-3')
+						div(class='panel panel-default')
+							div(class='panel panel-heading')= title
+							div(class='panel panel-body')
+								table(class='table')
+									tbody
+										tr
+											td <span>Team Name</span>
+											td <input type="text" class="form-control" name='firstName'  ng-model='category.name' ng-blur='searchName()' required>
+										tr
+											td <span>Team Email Id</span>
+											td <input type="email" class="form-control" name='firstName'  ng-model='category.email' required>
+										tr
+											td <span>Description</span>
+											td <textarea class="form-control" name='middleName' ng-model='category.description'> </textarea>
+							.panel.panel-footer
+								.container-fluid 
+									.nav.navbar-nav {{footerStatus}}
+									.form.navbar-form.navbar-right
+										button.btn.btn-info(type='button' name='update' ng-disabled="categoryForm.$invalid" ng-click='add()') {{button}}
+								
+
+									

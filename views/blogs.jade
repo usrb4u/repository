@@ -1,0 +1,19 @@
+extends Layout
+
+block content
+	.col-md-9.col-md-push-0
+		script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+		| !{html.content}
+		.panel.panel-footer(align='right')
+			label !{html.username} @
+			span !{html.date}
+		if comments.length != 0
+			h3 Comments
+		-each com in comments
+			.panel.panel-default
+				label !{com.username} #
+				span !{com.date}
+			
+				p !{com.comments}
+			hr
+		include blogs_footer.jade

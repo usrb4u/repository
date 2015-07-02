@@ -1,0 +1,14 @@
+hr
+h4 Drop Comments
+.panel.panel-default(ng-controller='commentCtrl')
+  .panel.panel-body
+    .col-md-8.col-md-push-0
+      input(type='text', ng-model='comm.url', value='', ng-hide='true')
+      input(type='hidden' ng-model='comm.blogId' value=html.blogId text-value-copy)
+      | &#x9;&#x9;&#x9;
+      addcomment
+      | &#x9;&#x9;&#x9;
+      #space-for-comment
+// ============ FOOTER SECTION ==============
+tr
+  td(colspan='2', align='center', height='20', bgcolor='#777d6a') Copyright Unisys Global Services

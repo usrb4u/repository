@@ -1,0 +1,18 @@
+script(src='http://inblr-uppalasr:3000/controllers/postissue.js')
+script(src='http://inblr-uppalasr:3000/tinymce/js/tinymce/tiny_mce.js')
+script
+  include textarea.js
+hr
+h3 Share Your Answer
+.panel.panel-default(ng-controller='postIssueCtrl')
+  .panel.panel-body
+    .col-md-8.col-md-push-0
+      input(type='hidden' ng-model='comm.queryId' value=html.queryId text-value-copy)
+      | &#x9;&#x9;&#x9;
+      textarea
+  | &#x9;
+  .panel.panel-footer
+    button.btn.btn-info(type='button', name='Post', ng-click='postanswer()') Post
+// ============ FOOTER SECTION ==============
+tr
+  td(colspan='2', align='center', height='20', bgcolor='#777d6a') Copyright Unisys Global Services

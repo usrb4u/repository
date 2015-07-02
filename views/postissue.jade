@@ -1,0 +1,50 @@
+extends Layout
+
+block content
+	.col-md-9.col-md-push-0
+	script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+	form( id='postIssue' name='postIssue' novalidate)
+		script(src="tinymce/js/tinymce/tiny_mce.js")
+		script
+			include textarea.js
+		div(class='container' ng-controller='postIssueCtrl')
+					
+			hidden(name='txtMsg' ng-model='postObj.txtMsg')
+			div(class='row')
+				div(class='col-md-9 col-md-push-1')
+					div(class='panel panel-default')
+						div(class='panel panel-body')
+							table(class='table')
+								tbody
+									tr
+										td(align='center' width='10%') <label> Headline</label>
+										td(width='90%') <input type="text" class="form-control" name='title' ng-size='3' ng-model='postObj.title' required>
+									tr
+										td <label> Description</label>
+										td <textarea class="form-control"></textarea>
+									tr
+										td
+											label Attach 
+										td
+											input.form-control(type="file" ng-file-select="onFileSelect($files)" ng-model='postObj.fileName')
+											fieldset(data-ng-repeat='attach in attachments')
+												table.table
+													tr
+														td(width='85%')
+															input.form-control(type='text' ng-model='attach.url')
+														td(width='15%')
+															button(type='button'  ng-show="$last" ng-click='remove(attach.id)') Remove
+						.panel-footer
+							.container-fluid 
+								ul.nav.navbar-nav
+									li
+										label &nbsp;&nbsp; Query Belongs To
+										select.form-control(name='team' ng-model="postObj.team" ng-options ="team.name as team.name for team in teams")
+									li 
+										span &nbsp;&nbsp;&nbsp;
+
+									li 
+										label Notify to Team
+										input.form-control(type='checkbox' ng-model='postObj.notification' ng-disabled='notify')
+								.form.navbar-form.navbar-right
+									button(type="button" class="btn btn-info" name='Post' ng-disabled="postIssue.$invalid" ng-click='save()') Post

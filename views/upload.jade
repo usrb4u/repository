@@ -1,0 +1,46 @@
+extends layout
+
+block content
+	script(src="http://inblr-uppalasr:3000/lib/jquery-1.7.1.min.js")
+	script(src="http://inblr-uppalasr:3000/lib/jquery-form.min.js")
+	script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+	form#uploadForm(ng-controller='uploadCtrl' name='uploadForm')
+		.container
+			h3 Upload Document / Recorded Video
+			.row
+				.row.col-md-8.col-md-push-1
+			.row
+				.col-md-8.col-md-push-1
+					.panel.panel-default
+						.panel.panel-body
+							table.table
+								tbody
+									tr
+										td(align='center' width='10%')
+											label Title*
+										td(width='90%')
+											input.form-control(type='text' ng-model='uploadObj.title' required)
+									tr
+										td(align='center' width='10%')
+											label Keywords*
+										td(width='90%')
+											input.form-control(type='text' ng-model='uploadObj.keywords' required)
+									tr
+										td(align='center' width='10%') 
+											label Attach
+										td(width='80%')
+											table.table
+												tr
+													td(width='80%')
+														input.form-control(type="file" ng-file-select="onFileSelect($files)" ng-model='uploadObj.fileName' data-multiple="true")
+													td(width='20%') {{uploadProgress}}
+						.panel-footer
+
+							.container-fluid 
+								ul.nav.navbar-nav
+									li
+										label &nbsp;&nbsp; Represents To
+										select.form-control(name='team' ng-model="uploadObj.team" ng-options ="team.name as team.name for team in teams")
+								.form.navbar-form.navbar-right
+									button.btn.btn-info(type="button" name='save' ng-disabled='uploadForm.$invalid' ng-click='save()' ) Save
+							

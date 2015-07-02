@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	.col-md-12.col-md-push-0
+		.panel.panel-default
+			.panel.panel-body
+				h4 #{team}
+				.col-md-6.col-md-push-0
+					.panel.panel-default
+						.panel.panel-heading
+							label Questions in Team
+						.panel.panel-body 				
+							-each prop in query
+								.container-class
+									li <a href='#{prop._url}')>#{prop._title}</a> 
+				.col-md-6.col-md-push-0
+					.panel.panel-default
+						.panel.panel-heading
+							label Blogs in Team
+						.panel.panel-body 						
+							-each prop in blog
+								.container-class
+									li <a href='#{prop._url}')>#{prop._title}</a> 

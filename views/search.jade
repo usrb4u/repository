@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	.col-md-9.col-md-push-0
+		h3 Searching for : <i>#{searchMsg}</i>
+		h5 !{question.length+blogs.length} result(s) found...
+		br
+		if(question.length!=0)
+			h4 Results from Questions: !{question.length}
+			hr
+			-each prop in question
+				.container-class
+					if(prop._title==undefined)
+						- prop._title = prop._url
+					h4 <a href='#{prop._url}')>#{prop._title}</a> 
+					p <span> #{prop._data}</span>
+				hr
+		if(blogs.length!=0)
+			h4 Results from Blogs: !{blogs.length}
+			hr
+			-each prop in blogs
+				.container-class
+					h4 <a href='#{prop._url}')>#{prop._title}</a> 
+					p <span> #{prop._data}</span>
+				hr
+		

@@ -1,0 +1,14 @@
+extends Layout
+
+block content
+	.col-md-9.col-md-push-0
+		.panel.panel-default
+			.panel.panel-heading= url
+			.panel.panel-body
+				video(width='320', height='240', controls='controls', autoplay='autoplay')
+					source(src='http://inblr-uppalasr:3000/upload/up1/nuget-packages' type="video/mp4")
+					source(src=url type="video/webm")
+					source(src=url type="video/ogg")
+					source(src=url type="video/wmv")
+					<!-- fallback -->
+					Your browser does not support the <code>video</code> element.

@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='http://inblr-uppalasr:3000/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='http://inblr-uppalasr:3000/stylesheets/select.css')
+    script(src='http://inblr-uppalasr:3000/lib/angular-file-upload-shim.min.js')
+    script(src='http://inblr-uppalasr:3000/lib/angular.min.js')
+    script(src='http://inblr-uppalasr:3000/lib/angular-file-upload.min.js')
+  body(data-ng-app='searchApp' )
+    script(src='http://inblr-uppalasr:3000/controllers/search.js')
+    table(width='100%', style='height: 100%;', cellpadding='10', cellspacing='0', border='0')
+      tr
+        // ============ HEADER SECTION ==============
+        td(colspan='2', style='height: 80px;', bgcolor='#ddddee', align='center')
+          h1
+            span.label.label-default ABSuite Technical Issue Forum
+      // ============ NAVIGATION BAR SECTION ==============
+      tr
+        td(colspan='2', valign='middle', height='30', bgcolor='#ddddee')
+            nav.navbar.navbar-default
+              .container-fluid
+                .navbar-header
+                  a.navbar-brand(href='/') Home
+                | &#x9;&#x9;
+                | &#x9;
+                ul.nav.navbar-nav
+                  li <a href="/profile">Profile</a>
+                  li <a href="/postissue">Post Query</a>
+                  li <a href="/blog">New Blog</a>
+                  li <a href="/upload">Upload Video</a>
+                form.navbar-form.navbar-right(role='search' ng-controller='searchCtrl' novalidate)
+                  select.form-control(name='team' ng-model="search.team" ng-options ="dir for dir in folders")
+                    //
+                      select.form-control(name='team' ng-model='search.team') 
+                        -each dir in #{folders}
+                          -var select=null; if(dir=='All') select='selected'
+                          option(value='#{dir}' selected=dir=='All') #{dir}
+                  .form-group
+                    input.form-control(type='text', ng-model='search.info' placeholder='Search')
+                  |         
+                  button.btn.btn-default(type='submit' ng-click='find()' ng-disabled='search.$invalid') Submit
+      tr
+        // ============ LEFT COLUMN (MENU) ==============
+        td(width='17%', valign='top', bgcolor='#ddddee')
+          .list-group(ng-controller='searchCtrl')
+            div(ng-repeat='team in teams') 
+              a.list-group-item(href='/category/{{team.name}}') {{team.name}}
+        // ============ RIGHT COLUMN (CONTENT) ==============
+        td(width='80%', valign='top', bgcolor='#ffffff')
+          .panel.panel-default
+            .panel.panel-body
+                block content
+

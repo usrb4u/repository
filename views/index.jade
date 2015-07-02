@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	h2(align='center') Welcome to ABSuite Forum
+	hr
+	.col-md-4.col-md-push-0
+		.panel.panel-default
+			.panel.panel-heading Latest Questions
+			.panel.panel-body
+				-each prop in query
+					.container-class
+					li <a href='#{prop.url}')>#{prop.title}</a> - #{prop.team}
+	.col-md-4.col-md-push-0
+		.panel.panel-default
+			.panel.panel-heading Latest Blogs
+			.panel.panel-body(padding-right: 20px;)
+				-each prop in blog
+					.container-class
+					li <a href='#{prop.url}')>#{prop.title}</a> - #{prop.team}
+	.col-md-4.col-md-push-0
+		.panel.panel-default
+			.panel.panel-heading Latest Uploads
+			.panel.panel-body
+				-each prop in upload
+					.container-class
+					li <a href='#{prop.url}')>#{prop.title}</a> - #{prop.team}

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	.col-md-9.col-md-push-0
+		script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+		form(name='blog' novalidate)
+			script(src="tinymce/js/tinymce/tiny_mce.js")
+			script
+				include textarea.js
+
+			div(class='container' ng-controller='blogControl')
+					
+				hidden(name='txtMsg' ng-model='srepObj.txtMsg')
+				input(ng-model='srepObj.username' type="hidden" id='username' ng-value='srepObj.username=Guest1')
+				div(class='row')
+					div(class='col-md-9 col-md-push-1')
+						div(class='panel panel-default')
+							div(class='panel panel-body')
+								table(class='table')
+									tbody
+										tr
+											td(align='left' width='20%') <label> Title</label>
+											td(width='80%') <input type="text" class="form-control" name='title' ng-size='3' ng-model='srepObj.title' required>
+										tr
+											td <label> Blog Content </label>
+											td <textarea class="form-control"></textarea>
+
+							.panel-footer
+								.container-fluid 
+									ul.nav.navbar-nav
+										li
+											label &nbsp;&nbsp; Blog Belongs To
+											select.form-control(name='team' ng-model="srepObj.team" ng-options ="team.name as team.name for team in teams")
+									.form.navbar-form.navbar-right
+										button.btn.btn-info(type="button" name='save' ng-disabled="blog.$invalid" ng-click='save()') Save

@@ -1,0 +1,34 @@
+extends Layout
+
+block content
+	.col-md-9.col-md-push-0
+		script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+		table.table
+			tbody
+				tr
+					td(width='5%') &nbsp;
+					td(width='95%')
+						| !{html.content}
+						if(html.attachment.length!=0)
+							label Number of attached Images: !{html.attachment.length}
+							br
+							-each attach in html.attachment
+								a(href='#{attach.url}')
+									img(src='#{attach.url}' style="width:100px;height:100px;")
+						.panel.panel-footer(align='right')
+							label !{html.username} @
+							span !{html.date}
+				tr
+					td(width='5%')
+					td(width='95%')
+						-var ans=0
+						-each answer in answers
+							- ans++
+							.panel.panel-default
+								.panel.panel-heading 
+									label Answer# !{ans}
+								.panel.panel-body !{answer.content}
+								.panel.panel-footer(align='right')
+									label !{answer.username} @
+									span !{answer.date}
+		include question_footer.jade

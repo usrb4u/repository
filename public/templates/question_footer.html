@@ -1,0 +1,28 @@
+
+<script src="http://localhost:3000/controllers/postissue.js"></script>
+<script src="http://localhost:3000/tinymce/js/tinymce/tiny_mce.js"></script>
+<script >
+
+</script>
+<hr>
+<h3>Share Your Answer</h3>
+<div class='panel panel-default' ng-app="postIssue" ng-controller="question">
+	<div class='panel panel-body'>
+		<div class='col-md-8 col-md-push-0'>
+			<input type='text' ng-model='comm.url' value='' ng-init='test' ng-hide='true'>
+			<textarea required></textarea>
+		</div>
+	</div>
+	<div class='panel panel-footer'> 
+		<button type="button" class="btn btn-info" name='Post' ng-click='postanswer()'>Post</button>
+	</div>
+
+</div>
+
+<!-- ============ FOOTER SECTION ============== -->
+<tr><td colspan="2" align="center" height="20" bgcolor="#777d6a">Copyright Unisys Global Services</td></tr>
+</table>
+</body>
+
+<html>
+

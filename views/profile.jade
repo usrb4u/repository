@@ -1,0 +1,47 @@
+extends layout
+
+block content
+	.col-md-9.col-md-push-0
+		script(src='http://inblr-uppalasr:3000/controllers/'+jsfile+'.js')
+		form(name='profileForm' novalidate)
+			div(class='container' ng-controller='profileCtrl')
+				
+				div(class='row')
+					div(class='col-md-6 col-md-push-3')
+						div(class='panel panel-default')
+							div(class='panel panel-heading')= title
+							div(class='panel panel-body')
+								table(class='table')
+									tbody
+										tr
+											td <span>User Name</span>
+											td <input type="text" class="form-control" name='doamainId' ng-size='9' ng-model='profile.userName' readonly>
+										tr
+											td <span>First Name</span>
+											td <input type="text" class="form-control" name='firstName' ng-size='20' ng-model='profile.firstName' required>
+										tr
+											td <span>Middle Name</span>
+											td <input type="text" class="form-control" name='middleName' ng-size='9' ng-model='profile.middleName' >
+										tr
+											td <span>Last Name</span>
+											td <input type="text" class="form-control" name='lastName' ng-size='20' ng-model='profile.lastName'>
+										tr
+											td <span>Email Id</span>
+											td <input type="email" class="form-control" name='emailId' ng-size='20' ng-model='profile.emailId' required>
+										tr
+											td <span>Work Group</span>
+											td <input type="text" class="form-control" name='workgroup' ng-size='9' ng-model='profile.workStation' readonly>
+										tr
+											td <span>Team</span>
+											td <div class="list-group">
+												<select ng-model="profile.team" class="form-control" ng-options ="group.name as group.name for group in groupList"></select>
+												<span>Not found <a href='/category'>Click Here</a></span>
+												
+										tr
+											td <span>Notifications</span>
+											td <input type='checkbox' class='form-control' name='notification' ng-model='profile.notification'>
+							div(class="panel-footer") 
+								.container-fluid 
+									.nav.navbar-nav {{footerStatus}}
+									.form.navbar-form.navbar-right
+										button(type="button" class="btn btn-info" name='update' ng-disabled="profileForm.$invalid" ng-click='update()' align='right') Update

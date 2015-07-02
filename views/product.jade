@@ -1,0 +1,53 @@
+extends layout
+
+block content
+	form(ng-app='prodApp' name='prodForm' novalidate )
+		div(class='container' ng-controller='prodCtrl')
+			h2 Product information
+			div(class='row')
+				div(class='row col-md-6 col-md-push-10')
+					a(class="btn btn-info" href="/" ) Home 
+					a(class="btn btn-info" href="/" ) Exit
+			div(class='row')
+				div(class='col-md-6 col-md-push-3')
+					div(class='panel panel-default')
+						div(class='panel panel-heading') Product Details
+						div(class='panel panel-body')
+							table(class='table')
+								tbody
+									tr
+										td <span> Product Number</span>
+										td <input type="text" class="form-control" value='' name='prodNo' ng-size='3' ng-model='prodObj.no' required>
+									tr
+										td <span> Name</span>
+										td <input type="text" class="form-control" value='' name='prodName' ng-size='20' ng-model='prodObj.name'>
+									tr
+										td <span> Selling Price</span>
+										td <input type="text" class="form-control" ng-init="prodObj.sprice='0'"  name='prodSPrice' ng-size='6' ng-model='prodObj.sprice'>
+									tr
+										td <span> Reorder Level</span>
+										td <input type="text" class="form-control" value='' name='prodReLevel' ng-size='4' ng-model='prodObj.rlevel' ng-init="prodObj.relevel=''" >
+									tr
+										td <span> Unit of Sale</span>
+										td <input type="text" class="form-control" value='' name='prodUnitSale' ng-size='3' ng-model='prodObj.unitsale' ng-init="prodObj.unitsale=''" >
+									tr
+										td <h4> For Price Change only: </h4>
+									tr
+										td <span> Your Name</span>
+										td <input type="text" value='' class="form-control" name='prodYName' ng-size='15' ng-model='prodObj.yname' ng-init="prodObj.yname=''" >
+									tr
+										td <span> Reason </span>
+										td <input type="text" class="form-control" value='' name='prodReason' ng-size='30' ng-init="prodObj.reason=''" ng-model='prodObj.reason'>
+							div(class='row col-md-8 col-md-push-1')
+								button(type="button" class="btn btn-success" ng-disabled="prodForm.$invalid" ng-click="add()") Add 
+								button(type="button" class="btn btn-info" ng-disabled="prodForm.$invalid" ng-click="enq()") Enquire
+								button(type="button" class="btn btn-default" ng-disabled="prodForm.$invalid" ng-click="update()") Update
+								button(type="button" class="btn btn-danger" ng-disabled="prodForm.$invalid" ng-click="del()") Delete   
+
+							div(class='row col-md-6 col-md-push-8')
+								button(type="button" class="btn btn-info" name='last' ng-click='last()' ) << 
+								button(type="button" class="btn btn-info" name='prev' ng-click='previous()') <
+								button(type="button" class="btn btn-info"  name='next' ng-click='next()') >
+								button(type="button" class="btn btn-info"  name='first' ng-click='first()') >>   
+						div(class="panel-footer") {{footerStatus}}
+									
